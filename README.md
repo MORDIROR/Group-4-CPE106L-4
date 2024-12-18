@@ -5,7 +5,7 @@ Members:
 
 Amarillo, Derrick R.
 
-Buena, Jasmine C.
+Buena, Jasmine Gabrielle C.
 
 Maglipac, Kian Andrei C.
 
