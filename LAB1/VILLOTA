@@ -1,4 +1,4 @@
-FOR PROBLEM #1:
+P1
 
 def mean(numbers):
     if not numbers:
@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
 
 
-FOR PROBLEM #2:
+P2
 
 def navigate_file():
     filename = input("Enter the filename: ")
