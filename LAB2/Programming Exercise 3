@@ -1,0 +1,54 @@
+import random
+
+def getWords(prompt):
+    """Prompts the user to input a list of words."""
+    print(prompt)
+    words = input("Enter words separated by spaces: ").split()
+    return words
+
+def sentence(articles, nouns, verbs, prepositions):
+    """Builds and returns a sentence."""
+    return nounPhrase(articles, nouns) + " " + verbPhrase(articles, nouns, verbs, prepositions)
+
+def nounPhrase(articles, nouns):
+    """Builds and returns a noun phrase."""
+    return random.choice(articles) + " " + random.choice(nouns)
+
+def verbPhrase(articles, nouns, verbs, prepositions):
+    """Builds and returns a verb phrase."""
+    return random.choice(verbs) + " " + nounPhrase(articles, nouns) + " " + \
+           prepositionalPhrase(articles, nouns, prepositions)
+
+def prepositionalPhrase(articles, nouns, prepositions):
+    """Builds and returns a prepositional phrase."""
+    return random.choice(prepositions) + " " + nounPhrase(articles, nouns)
+
+def main():
+    """Allows the user to input words and generate sentences."""
+    print("Welcome to the Sentence Generator!")
+
+    # Prompt user for word lists
+    articles = getWords("Enter articles (e.g., a the):")
+    nouns = getWords("Enter nouns (e.g., boy girl bat):")
+    verbs = getWords("Enter verbs (e.g., hit saw liked):")
+    prepositions = getWords("Enter prepositions (e.g., with by):")
+
+    # Validate input
+    if not (articles and nouns and verbs and prepositions):
+        print("All word lists must have at least one word. Please try again.")
+        return
+
+    # Prompt for the number of sentences
+    try:
+        number = int(input("Enter the number of sentences to generate: "))
+    except ValueError:
+        print("Invalid number. Please enter an integer.")
+        return
+
+    # Generate and print sentences
+    for count in range(number):
+        print(sentence(articles, nouns, verbs, prepositions))
+
+# The entry point for program execution
+if __name__ == "__main__":
+    main()
