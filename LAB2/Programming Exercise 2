@@ -1,1 +1,49 @@
+#LR2_2.py
 
+def navigate_file():
+    # Prompt the user for a filename
+    filename = input("Enter the filename: ")
+
+    try:
+        # Read the file and store its lines in a list
+        with open(filename, 'r') as file:
+            lines = file.readlines()
+
+        # Display the total number of lines in the file
+        print(f"The file contains {len(lines)} lines.")
+
+        while True:
+            # Prompt the user for a line number
+            try:
+                line_number = int(input("Enter a line number (0 to quit): "))
+
+                if line_number == 0:
+                    print("Exiting the program. Goodbye!")
+                    break
+                elif 1 <= line_number <= len(lines):
+                    # Display the line corresponding to the entered number
+                    print(f"Line {line_number}: {lines[line_number - 1].strip()}")
+                else:
+                    print("Invalid line number. Please enter a number between 1 and", len(lines))
+            except ValueError:
+                print("Please enter a valid number.")
+    except FileNotFoundError:
+        print("The specified file does not exist. Please try again.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+# Run the program
+if __name__ == "__main__":
+    navigate_file()
+
+
+
+# Filename
+# Color.sp
+    # Red
+    #Orange
+    #Yellow
+    #Green
+    #Blue
+    #Indigo
+    #Violet
