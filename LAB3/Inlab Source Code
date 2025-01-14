@@ -1,0 +1,44 @@
+// main.py
+
+def find_mode(file_name):
+    try:
+        # Open the file for reading
+        with open(file_name, 'r') as f:
+            words = []
+            for line in f:
+                words_in_line = line.split()
+                for word in words_in_line:
+                    # Convert words to uppercase
+                    words.append(word.upper())
+
+            # Count word frequencies using a dictionary
+            word_frequencies = {}
+            for word in words:
+                word_frequencies[word] = word_frequencies.get(word, 0) + 1
+
+            # Find the mode(s) (words with the highest frequency)
+            max_frequency = max(word_frequencies.values())
+            modes = [word for word, freq in word_frequencies.items() if freq == max_frequency]
+
+            # Print the results
+            print(f"The mode(s): {', '.join(modes)} with a frequency of {max_frequency}")
+
+    except FileNotFoundError:
+        print(f"Error: File '{file_name}' not found.")
+
+def main():
+    # Prompt the user for the file name
+    file_name = input("Enter the file name for mode calculation (e.g., words.txt): ")
+    find_mode(file_name)
+
+# Ensure the program runs only when executed directly
+if __name__ == "__main__":
+    main()
+
+
+// Filename: words.txt
+
+apple banana apple orange banana apple
+banana orange apple banana orange
+banana orange orange apple apple
+
