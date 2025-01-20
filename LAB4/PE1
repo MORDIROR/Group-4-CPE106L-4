@@ -1,0 +1,72 @@
+class Game:
+    def __init__(self):
+        # Initialize the game board and the first player
+        self.board = [[" " for _ in range(3)] for _ in range(3)]
+        self.current_player = "X"
+    
+    # Display the current board
+    def display_board(self):
+        for row in self.board:
+            print(" | ".join(row))
+            print("-" * 5)
+    
+    # Make a move for the current player
+    def make_move(self, row, col):
+        if row < 0 or row >= 3 or col < 0 or col >= 3:
+            print("Invalid position! Coordinates must be between 0 and 2.")
+            return False
+        if self.board[row][col] == " ":
+            self.board[row][col] = self.current_player
+            return True
+        else:
+            print("Cell is already occupied. Try again.")
+            return False
+    
+    # Check if the current player has won the game
+    def check_win(self):
+        # Check rows, columns, and diagonals
+        for row in self.board:
+            if row.count(row[0]) == 3 and row[0] != " ":
+                print(f"Player {row[0]} wins!")
+                return True
+        
+        for col in range(3):
+            if self.board[0][col] == self.board[1][col] == self.board[2][col] != " ":
+                print(f"Player {self.board[0][col]} wins!")
+                return True
+        
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] != " ":
+            print(f"Player {self.board[0][0]} wins!")
+            return True
+        
+        if self.board[0][2] == self.board[1][1] == self.board[2][0] != " ":
+            print(f"Player {self.board[0][2]} wins!")
+            return True
+        
+        return False
+    
+    # Switch the current player (X or O)
+    def switch_player(self):
+        self.current_player = "O" if self.current_player == "X" else "X"
+    
+    # Start the game and run the game loop
+    def start_game(self):
+        self.display_board()
+        while True:
+            try:
+                # Input prompt for row,col, with validation
+                row, col = map(int, input(f"Player {self.current_player}, enter your move (row,col): ").split(","))
+                if self.make_move(row, col):
+                    self.display_board()
+                    if self.check_win():
+                        break
+                    self.switch_player()
+                else:
+                    print("Invalid move, please try again.")
+            except ValueError:
+                print("Invalid input! Enter row,col as two integers.")
+
+# Create a Game object and start the game
+game = Game()
+game.start_game()
+
