@@ -65,4 +65,3 @@ Owner → CondoUnit: One-to-many (An owner can own multiple condos)
 CondoUnit → Location: Many-to-one (Each condo unit is located at one location, but a location can have multiple condos)
 ServiceRequest → CondoUnit: Many-to-one (A service request is made for one condo unit)
 ServiceRequest → ServiceCategory: Many-to-one (A service request falls under one service category)
-
