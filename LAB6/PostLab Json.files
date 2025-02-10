@@ -1,0 +1,27 @@
+//While the database collections must be imported separately into MongoDB Compass (artists.json, albums.json, tracks.json, etc.), the following full JSON structure is provided to demonstrate the entire dataset in one unified format. This is solely for presentation purposes in this report and should not be imported as a single file into MongoDB Compass. Each collection should be handled independently during implementation.
+
+{
+  "artists": [
+    { "_id": 1, "Name": "AC/DC" },
+    { "_id": 2, "Name": "Queen" },
+    { "_id": 3, "Name": "Metallica" }
+  ],
+  "albums": [
+    { "_id": 1, "Title": "Back in Black", "ArtistId": 1 },
+    { "_id": 2, "Title": "A Night at the Opera", "ArtistId": 2 },
+    { "_id": 3, "Title": "Master of Puppets", "ArtistId": 3 }
+  ],
+  "tracks": [
+    { "_id": 1, "Name": "Hells Bells", "AlbumId": 1, "GenreId": 1, "MediaTypeId": 1 },
+    { "_id": 2, "Name": "Bohemian Rhapsody", "AlbumId": 2, "GenreId": 2, "MediaTypeId": 2 },
+    { "_id": 3, "Name": "Master of Puppets", "AlbumId": 3, "GenreId": 1, "MediaTypeId": 1 }
+  ],
+  "genres": [
+    { "_id": 1, "Name": "Rock" },
+    { "_id": 2, "Name": "Classic" }
+  ],
+  "media_types": [
+    { "_id": 1, "Name": "MP3" },
+    { "_id": 2, "Name": "FLAC" }
+  ]
+}
