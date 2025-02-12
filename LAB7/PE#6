@@ -1,0 +1,4 @@
+First: Upload the needed files in google collab using this code
+
+from google.colab import files
+uploaded = files.upload()
