@@ -2,3 +2,50 @@ First: Upload the needed files in google collab using this code
 
 from google.colab import files
 uploaded = files.upload()
+
+Then: We loaded the file
+ import pandas as pd
+
+
+# Load the uploaded file
+file_name = 'rawbrogdonstats.csv'  # Use the name of the uploaded file
+df = pd.read_csv(file_name)
+
+
+# Display the first few rows of the DataFrame
+df.head()
+
+
+Finally: We define the cleanstats Functions using the following code
+def cleanStats(df):
+    # Define a helper function to split the 'makes-attempts' format
+    def split_makes_attempts(column):
+        makes = column.str.split('-').str[0].astype(int)
+        attempts = column.str.split('-').str[1].astype(int)
+        return makes, attempts
+
+
+    # Process the FG column
+    df['FGM'], df['FGA'] = split_makes_attempts(df['FG'])
+    df.drop(columns=['FG'], inplace=True)
+
+
+    # Process the 3PT column
+    df['3PM'], df['3PA'] = split_makes_attempts(df['3PT'])
+    df.drop(columns=['3PT'], inplace=True)
+
+
+    # Process the FT column
+    df['FTM'], df['FTA'] = split_makes_attempts(df['FT'])
+    df.drop(columns=['FT'], inplace=True)
+
+
+    return df
+
+
+# Apply the cleanStats function to the DataFrame
+df_cleaned = cleanStats(df)
+
+
+# Display the first few rows of the cleaned DataFrame
+df_cleaned.head()
