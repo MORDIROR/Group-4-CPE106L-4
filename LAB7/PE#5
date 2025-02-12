@@ -1,1 +1,48 @@
+CODE 1:
+import pandas as pd
 
+
+# Load the dataset
+df = pd.read_csv('breadprice.csv')
+
+
+# Calculate the average price for each year
+df['Average Price'] = df.iloc[:, 1:].mean(axis=1)
+
+
+# Clean the data (fill missing values)
+df.fillna(method='ffill', inplace=True)
+df['Year'] = df['Year'].astype(int)
+df['Average Price'] = df['Average Price'].astype(float)
+
+
+print(df.head())  # Print the first few rows to verify the data
+
+
+
+CODE 2:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# Load the dataset
+df = pd.read_csv('breadprice.csv')
+
+
+# Calculate the average price for each year
+df['Average Price'] = df.iloc[:, 1:].mean(axis=1)
+
+
+# Clean the data (fill missing values)
+df.fillna(method='ffill', inplace=True)
+df['Year'] = df['Year'].astype(int)
+df['Average Price'] = df['Average Price'].astype(float)
+
+
+# Display the line plot
+df.plot(x='Year', y='Average Price', kind='line')
+plt.title('Average Price of Bread Over the Years')
+plt.xlabel('Year')
+plt.ylabel('Average Price')
+plt.grid(True)
+plt.show()
